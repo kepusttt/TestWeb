@@ -1,0 +1,66 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content  %}
+
+
+
+<div class="sim-slider">
+    <ul class="sim-slider-list">
+
+    <li><img src="http://pvbk.spb.ru/inc/slider/imgs/no-image.gif" alt="screen"></li>
+    {% for imgs in img %}
+    <li class="sim-slider-element"><img src="{{  imgs.image.url }}" alt="0"></li>
+    {% endfor %}
+  </ul>
+    <div class="sim-slider-arrow-left"></div>
+    <div class="sim-slider-arrow-right"></div>
+    <div class="sim-slider-dots"></div>
+</div>
+
+
+<div class="sdiv">
+
+   {% for subimage in simg %}
+        {% if subimage.image %}
+            <img class="minimized" src="{{ subimage.image.url }}" alt="{{ subimage.title }}">
+        {% endif %}
+    {% endfor %}
+    <button class="btn btn-outline-primary" id="showimg">Фотоальбом</button>
+</div>
+
+<div class="features">
+
+{% for text_index in text_indexes %}
+  {% if text_index.big_title %}
+    <h3> <b>{{ text_index.big_title }}</b> </h3>
+  {% endif %}
+  <p>{% if text_index.timage %}
+
+      {% if text_index.LeftImg %}
+    <img class="timageleft" src="{{ text_index.timage.url }}" alt="">
+      {% else %}
+    <img class="timage" src="{{ text_index.timage.url }}" alt="">
+      {% endif %}
+
+  {% endif %}
+      {{ text_index.big_text }}</p>
+
+{% endfor %}
+
+</div>
+
+
+{% endblock %}
+
+{% block title  %}
+СПК Дружба-Автюки
+{% endblock %}
+
+
+
+{% block script %}
+<script src="{% static 'main/js/script.js' %}"></script>
+<script>new Sim()</script>
+
+
+{% endblock %}
