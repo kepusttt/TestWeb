@@ -1,1 +1,1 @@
-Graduation project for Shavlinskaya
+project for Shavlinskaya
