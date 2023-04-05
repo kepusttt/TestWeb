@@ -13,6 +13,11 @@ def product(request):
     return render(request, 'main/product.html')
 
 
+
+def login(request):
+    return render(request, 'main/login.html')
+
+
 def image_list(request):
     img = Image.objects.all()
     print(img)
