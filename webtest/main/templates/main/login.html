@@ -1,6 +1,8 @@
 {% extends 'main/layout.html' %}
+
 {% load static %}
 {% block content %}
+
 <div class="login">
     <h3 text-align="center" class="htext">Вход</h3>
 <div id="input1d">
@@ -16,7 +18,7 @@
 </svg></button>
 </div>
     <button class="btn btn-outline-success" id="LoginBtn">Войти</button>
-    <button class="btn btn-outline-secondary" id="RegBtn">Регистрация</button>
+    <button class="btn btn-outline-secondary" id="RegBtn" type="button" onclick="location.href='{% url 'register' %}'">Регистрация</button>
     <a href="" id="forgot">Забыли пароль?</a>
 
 </div>
