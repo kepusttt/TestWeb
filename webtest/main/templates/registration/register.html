@@ -1,12 +1,67 @@
 {% extends 'main/layout.html' %}
 
 {% block content %}
-<div class="login">
-  <h2>Register</h2>
-  <form method="post">
+<div class="registr">
+  <h2 class="htext">Регистрация</h2>
+  <form method="post" >
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
+    <div class="form-group">
+    {{ form.email.label_tag }}
+    {{ form.email }}
+{% if form.errors %}
+    <div class="alert">
+      <div class="alert-message">
+        {% for field in form %}
+          {% for error in field.errors %}
+            <div class="alert-error">{{ error }}</div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  </div>
+  <div class="form-group">
+    {{ form.first_name.label_tag }}
+    {{ form.first_name }}
+  </div>
+  <div class="form-group">
+    {{ form.last_name.label_tag }}
+    {{ form.last_name }}
+  </div>
+  <div class="form-group">
+    {{ form.password1.label_tag }}
+    {{ form.password1 }}
+  </div>
+  <div class="form-group">
+    {{ form.password2.label_tag }}
+    {{ form.password2 }}
+  </div>
+    <button type="submit" class="btn btn-outline-success" id="RegBtn2">Регистрация</button>
   </form>
 </div>
+
+
+
+  <script>
+    var alertBox = document.querySelector('.alert');
+setTimeout(function() {
+  alertBox.classList.add('show');
+}, 0);
+    // Код, который скрывает сообщение об ошибке через 3 секунды
+    setTimeout(function() {
+      var alert = document.querySelector('.alert');
+      alert.parentNode.removeChild(alert);
+    }, 6000);
+
+    // Код, который скрывает сообщение об ошибке при клике на него
+    var alert = document.querySelector('.alert');
+    alert.addEventListener('click', function() {
+      alert.parentNode.removeChild(alert);
+
+
+    }
+    );
+
+
+  </script>
 {% endblock %}
