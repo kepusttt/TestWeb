@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from main.models import Image, TextIndex, SubImage, CustomUser
+from main.models import Image, TextIndex, SubImage, CustomUser, productCards
 from main.forms import CustomUserCreationForm
 
 
@@ -12,7 +12,11 @@ def index(request):
 
 
 def product(request):
-    return render(request, 'main/product.html')
+    products = productCards.objects.all()  # Получаем первый объект ProductCards (может быть изменено в соответствии с вашей логикой)
+    context = {
+        'products': products
+    }
+    return render(request, 'main/product.html', context)
 
 
 
@@ -44,6 +48,7 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
 
 
 

@@ -86,8 +86,6 @@ main .features
 {
     font-family: 'Exo 2', sans-serif;
     float:left;
-    display: inline-block;
-    justify-content: left;
     margin-left: 20%;
     color: #ffff;
     vertical-align: middle;
@@ -543,3 +541,82 @@ label {
   opacity: 1;
   transform: translateY(0%);
 }
+
+.card{
+    display: flex;
+    height: 15%;
+    max-height: 350px;
+    min-height: 350px;
+    width: 10%;
+    max-width: 250px;
+    min-width: 250px;
+    margin-right: 5%;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 30px 20px;
+
+
+}
+
+.featuresa
+{
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 0px;
+    display: grid;
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    margin-left: 20%;
+    color: #ffff;
+    vertical-align: middle;
+    margin-top: 1.5%;
+    text-align: center;
+    width: 75%;
+
+}
+
+.featuresa h1
+{font-size: 50px;
+ font-family: 'Exo 2', sans-serif;
+}
+.featuresa p
+{
+    max-width: 100%;
+    min-width: 100%;
+    margin: 2% auto;
+    text-align: justify;
+    font-family: 'Exo 2', sans-serif;}
+
+.imagecard{
+    max-width: 100%;
+    min-height: 170px;
+    max-height: 170px;
+    border: 0.3px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.card{
+    border-radius: 15px;
+    background: #181818;
+
+}
+
+
+
+.textcard{
+    padding: 10px 10px 10px 10px ;
+    height: 40%;
+    word-wrap: break-word;
+    max-width: 100%;
+    max-height: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.textcard p{
+    margin: 5px 0px 0px 2px ;
+}
+.card button{
+  border-radius: 12px;
+}
+
+

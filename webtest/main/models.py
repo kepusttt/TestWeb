@@ -5,6 +5,15 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
 
 
+class productCards(models.Model):
+    title = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='main/static/main/img')  # Поле для хранения картинки
+    text = models.TextField()  # Поле для хранения текста
+    price = models.DecimalField(max_digits=10, decimal_places=2)  # Поле для хранения цены
+
+    def __str__(self):
+        return self.title
+
 class Image(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='main/static/main/img')

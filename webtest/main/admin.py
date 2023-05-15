@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Image, TextIndex, SubImage, CustomUser
+from .models import Image, TextIndex, SubImage, CustomUser, productCards
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -27,6 +27,7 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(Image)
 admin.site.register(TextIndex)
 admin.site.register(SubImage)
+admin.site.register(productCards)
 admin.site.register(CustomUser, CustomUserAdmin)
 
 

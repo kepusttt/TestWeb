@@ -11,4 +11,5 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('images/', image_list, name='image_list'),
 
+
 ]
