@@ -613,10 +613,122 @@ label {
 }
 
 .textcard p{
-    margin: 5px 0px 0px 2px ;
+    margin: 0px 0px 0px 2px ;
+    text-align: center;
 }
 .card button{
   border-radius: 12px;
 }
 
+.contact{
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    margin-left: 20%;
+    color: #ffff;
+    vertical-align: middle;
+    margin: 80px 0px 20px 20% ;
+    text-align: left;
+    width: 75%;
+}
+.contact p{
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    color: #ffff;
+    vertical-align: middle;
+    margin: 2px 0px 0px 0% ;
+    text-align: left;
+    width: 75%;
+}
 
+.z-depth-1-half{
+    margin-left: 20%;
+
+}
+.map{
+    height: 350px;
+    width: 500px;
+    border-radius: 15px;
+}
+
+.textinp{
+    margin-left: 20%;
+}
+.input-group{
+    margin-top: 222px;
+    margin-left: 40%;
+    position: absolute;
+    width: 500px;
+    min-width: 500px;
+    height: 350px;
+    min-height: 350px;
+    padding: 10px 10px 10px 10px ;
+
+}
+.form-control{
+    font-size: 20px;
+    border-radius: 15px;
+    width: 500px;
+    min-width: 500px;
+    height: 350px;
+    min-height: 350px;
+    resize: none;
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    color: #000000;
+    vertical-align: middle;
+    margin: 2px 0px 0px 0% ;
+    text-align: left;
+}
+
+.userdata{
+
+    margin-left: 40.6%;
+    position: absolute;
+    margin-top: 185px;
+}
+
+.userdata input{
+    font-size: 20px;
+    width: 500px;
+    height: 35px ;
+    border-radius: 12px;
+    border: 0;
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    color: #000000;
+    vertical-align: middle;
+    margin: 2px 0px 0px 0% ;
+    text-align: left;
+    outline: none;
+    transition: .05s;
+    padding: 14px;
+
+}
+.userdata input:focus{
+    outline: rgb(106, 90, 205, .5) 3.5px solid;
+
+
+}
+
+.send{
+    position: absolute;
+    margin-left: 84%;
+    margin-top: 590px;
+}
+.send button{
+    border-radius: 15px;
+    width: 140px;
+
+}
+
+.pinp{
+    position: absolute;
+    font-size: 35px;
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    color: #ffff;
+    vertical-align: middle;
+    margin: 130px 0px 5px 40.5%;
+    text-align: left;
+
+}

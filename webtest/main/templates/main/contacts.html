@@ -1,0 +1,43 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+<div class="contact">
+    <p style="font-size: 35px" ><b>Контактные данные:</b></p>
+    <p> <b>Телефон:</b>  +375298410010</p>
+        <p><b>Электронная почта:</b> zxcreep17@gmail.com</p>
+    <p> <b>Адрес:</b> г.Гомель ул.Речицкая 4</p>
+
+</div>
+
+<div class="textinp">
+    <p class="pinp"> <b>Обращение:</b> </p>
+    <div class="userdata">
+        <input placeholder="Почта" type="email">
+    </div>
+
+    <div class="input-group mb-3">
+  <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Ваше обращение"></textarea>
+  </div>
+    </div>
+
+</div>
+
+
+
+<div class="send">
+    <button class="btn btn-outline-primary">Отправить</button>
+</div>
+
+
+<div id="map-container-google-1" class="z-depth-1-half map-container" >
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2450.2612763493403!2d29.42876998017975!3d52.11137471642732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46d67294c0000001%3A0x1a15898cdba1c7b5!2z0KHQn9CaIMKr0JTRgNGD0LbQsdCwLdCQ0LLRgtGO0LrQuMK7Lg!5e0!3m2!1sru!2sby!4v1684276093721!5m2!1sru!2sby" frameborder="0"
+    style="border:0" class="map" allowfullscreen></iframe>
+</div>
+
+
+{% endblock %}
+
+{% block title  %}
+Контакты
+{% endblock %}

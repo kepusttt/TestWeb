@@ -7,6 +7,7 @@
 <div class="card">
     <img src="{{ product.image.url }}" class="imagecard" alt="">
     <div class="textcard">
+        <p class="cardtitle"> <b>{{ product.title }}</b> </p>
         <p class="tcard">{{ product.text }}</p>
     </div>
     <button class="btn btn-outline-primary">Подробнее</button>
@@ -32,7 +33,7 @@
    var textcards = document.querySelectorAll(".textcard p");
 textcards.forEach(function(textcard) {
   $clamp(textcard, {
-    clamp: 4, // Число строк
+    clamp: 3, // Число строк
     useNativeClamp: false // НЕ используем -webkit-line-clamp
   });
 });

@@ -26,6 +26,9 @@ def login(request):
 def account(request):
     return render(request, 'main/account.html')
 
+def contacts(request):
+    return render(request, 'main/contacts.html')
+
 
 def image_list(request):
     img = Image.objects.all()
