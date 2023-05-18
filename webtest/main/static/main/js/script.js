@@ -173,25 +173,38 @@ Sim.initialize = function(that) {
 new Sim();
 
 
+
 $(function(){
   $('.minimized,.timage,.timageleft').click(function(event) {
     var i_path = $(this).attr('src');
+    var i_placeholder = $(this).attr('alt'); // Получение текста из placeholder картинки
     $('body').append('<div id="overlay"></div><div id="magnify"><img src="'+i_path+'"></div>');
     $('#magnify').css({
-     left: ($(document).width() - $('#magnify').outerWidth())/2,
-     // top: ($(document).height() - $('#magnify').outerHeight())/2 upd: 24.10.2016
-            top: ($(window).height() - $('#magnify').outerHeight())/2
-   });
+      left: ($(document).width() - $('#magnify').outerWidth())/2,
+      top: ($(window).height() - $('#magnify').outerHeight())/2
+    });
     $('#overlay, #magnify').fadeIn('fast');
+
+    // Добавление div с текстом
+    var textDiv = '<div id="textDiv">' + i_placeholder + '</div>'; // Использование текста из placeholder картинки
+    $('body').append(textDiv);
+    var textDivWidth = $('#textDiv').outerWidth();
+    var textDivHeight = $('#textDiv').outerHeight();
+    $('#textDiv').css({
+      left: ($(document).width() - textDivWidth)/2,
+      top: 0,
+      color: 'white'
+    });
   });
 
   $('body').on('click', '#overlay', function(event) {
     event.preventDefault();
     $('#overlay, #magnify').fadeOut('fast', function() {
-      $('#close-popup, #magnify, #overlay').remove();
+      $('#close-popup, #magnify, #overlay, #textDiv').remove();
     });
   });
 });
+
 
 
 function ShowPass() {

@@ -37,9 +37,9 @@
   <p>{% if text_index.timage %}
 
       {% if text_index.LeftImg %}
-    <img class="timageleft" src="{{ text_index.timage.url }}" alt="">
+    <img class="timageleft" src="{{ text_index.timage.url }}" alt="{{ text_index.Imagetitle }}">
       {% else %}
-    <img class="timage" src="{{ text_index.timage.url }}" alt="">
+    <img class="timage" src="{{ text_index.timage.url }}" alt="{{ text_index.Imagetitle }}">
       {% endif %}
 
   {% endif %}

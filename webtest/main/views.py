@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
-from main.models import Image, TextIndex, SubImage, CustomUser, productCards
+from main.models import Image, TextIndex, SubImage, CustomUser, productCards, appealFIZ, appealUR
 from main.forms import CustomUserCreationForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
 
 
 
@@ -26,8 +30,40 @@ def login(request):
 def account(request):
     return render(request, 'main/account.html')
 
+from django.http import JsonResponse
+
+@csrf_exempt
 def contacts(request):
-    return render(request, 'main/contacts.html')
+    if request.method == "POST":
+        data = json.loads(request.body)
+        UrFace = data.get("UrFace")
+        Fio = data.get("Fio")
+        Phone = data.get("Phone")
+        address = data.get("address")
+        appeal = data.get("appeal")
+
+        if UrFace:
+            # Создание и сохранение объекта в модели данных appealUR
+            appeal_obj = appealUR.objects.create(
+                UrFace=UrFace,
+                Fio=Fio,
+                Phone=Phone,
+                address=address,
+                appeal=appeal
+            )
+        else:
+            # Создание и сохранение объекта в модели данных appealFIZ
+            appeal_obj = appealFIZ.objects.create(
+                Fio=Fio,
+                Phone=Phone,
+                address=address,
+                appeal=appeal
+            )
+
+        return JsonResponse({"message": "Success"})
+    else:
+        return render(request, 'main/contacts.html')
+
 
 
 def image_list(request):

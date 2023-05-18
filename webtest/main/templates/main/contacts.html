@@ -9,25 +9,56 @@
 
 </div>
 
-<div class="textinp">
-    <p class="pinp"> <b>Обращение:</b> </p>
-    <div class="userdata">
-        <input placeholder="Почта" type="email">
-    </div>
+<!--<div class="textinp">-->
+<!--    -->
+<!--    <p class="pinp"> <b>Обращение:</b> </p>-->
+<!--    <div class="userdata">-->
+<!--        <input placeholder="Почта" type="email">-->
+<!--    </div>-->
 
-    <div class="input-group mb-3">
-  <div class="form-group">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Ваше обращение"></textarea>
-  </div>
-    </div>
+<!--    <div class="input-group mb-3">-->
+<!--  <div class="form-group">-->
+<!--        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Ваше обращение"></textarea>-->
+<!--  </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+{% csrf_token %}
+<div class="contactfieldFiz">
+    <p>ФИО</p>
+    <input type="text" id="fiofiz">
+    <p>Телефон</p>
+    <input type="text" id="phonefiz">
+    <p>Адрес</p>
+    <input type="text" id="addressfiz">
+    <p>Обращение:</p>
+    <textarea placeholder="Обращение" id="appealfiz"> </textarea>
+    <button type="submit" id="fizbut" class="btn btn-outline-success">Отправить</button>
+    <button type="submit" id="urface" class="btn btn-outline-primary">Для Юр. Лиц</button>
+
+
+</div>
+<div class="contactfieldYur">
+
+    <p>Юридическое лицо</p>
+    <input type="text" id="urfacei">
+    <p>ФИО Руководителя</p>
+    <input type="text" id="fioruki">
+    <p>Телефон</p>
+    <input type="text" id="phoneuri">
+     <p>Юридический адрес</p>
+    <input type="text" id="addressuri">
+
+    <p>Обращение:</p>
+    <textarea placeholder="Обращение" id="appealURi"> </textarea>
+    <button type="submit" id="senurb" class="btn btn-outline-success">Отправить</button>
+    <button type="submit" id="urface2" class="btn btn-outline-primary">Для Физ. Лиц</button>
 
 </div>
 
 
 
-<div class="send">
-    <button class="btn btn-outline-primary">Отправить</button>
-</div>
+
 
 
 <div id="map-container-google-1" class="z-depth-1-half map-container" >
@@ -40,4 +71,91 @@
 
 {% block title  %}
 Контакты
+{% endblock %}
+
+{% block script %}
+<script>
+ // Получаем кнопку и поле по их идентификаторам
+  var hideButton = document.getElementById('urface');
+  var contactField = document.querySelector('.contactfieldFiz');
+
+  // Добавляем обработчик события клика на кнопку
+  hideButton.addEventListener('click', function() {
+    // Изменяем видимость поля при каждом клике
+    contactField.style.display = contactField.style.display === 'none' ? 'flex' : 'none';
+  });
+</script>
+<script>
+ // Получаем кнопку и поле по их идентификаторам
+  var hideButton2 = document.getElementById('urface2');
+  var contactField = document.querySelector('.contactfieldYur');
+
+  // Добавляем обработчик события клика на кнопку
+  hideButton2.addEventListener('click', function() {
+    // Изменяем видимость поля при каждом клике
+    contactField.style.display = contactField.style.display === 'none' ? 'flex' : 'none';
+  });
+</script>
+
+<script>
+document.getElementById("senurb").addEventListener("click", function() {
+    var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var UrFace = document.getElementById("urfacei").value;
+    var Fio = document.getElementById("fioruki").value;
+    var Phone = document.getElementById("phoneuri").value;
+    var address = document.getElementById("addressuri").value;
+    var appeal = document.getElementById("appealURi").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "{% url 'contacts' %}", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("X-CSRFToken", csrfToken);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Обработка успешного ответа от сервера
+            console.log(xhr.responseText);
+        }
+    };
+
+    var data = JSON.stringify({
+        "UrFace": UrFace,
+        "Fio": Fio,
+        "Phone": Phone,
+        "address": address,
+        "appeal": appeal
+    });
+    xhr.send(data);
+});
+
+</script>
+<script>
+
+document.getElementById("fizbut").addEventListener("click", function() {
+    var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var Fio = document.getElementById("fiofiz").value;
+    var Phone = document.getElementById("phonefiz").value;
+    var address = document.getElementById("addressfiz").value;
+    var appeal = document.getElementById("appealfiz").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "{% url 'contacts' %}", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("X-CSRFToken", csrfToken);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Обработка успешного ответа от сервера
+            console.log(xhr.responseText);
+        }
+    };
+
+    var data = JSON.stringify({
+        "Fio": Fio,
+        "Phone": Phone,
+        "address": address,
+        "appeal": appeal
+    });
+    xhr.send(data);
+});
+</script>
+
 {% endblock %}

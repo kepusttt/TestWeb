@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Image, TextIndex, SubImage, CustomUser, productCards
+from .models import Image, TextIndex, SubImage, CustomUser, productCards, appealFIZ, appealUR
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -24,9 +24,15 @@ class CustomUserAdmin(UserAdmin):
     filter_horizontal = ()
 
 
+
+
+
+
 admin.site.register(Image)
 admin.site.register(TextIndex)
 admin.site.register(SubImage)
+admin.site.register(appealFIZ)
+admin.site.register(appealUR)
 admin.site.register(productCards)
 admin.site.register(CustomUser, CustomUserAdmin)
 

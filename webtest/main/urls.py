@@ -4,6 +4,7 @@ from .views import image_list, register
 
 
 urlpatterns = [
+    path(r'^admin_tools/', include('admin_tools.urls')),
     path('', views.index, name='home'),
     path('product', views.product, name='product'),
     path('login', views.login, name='login'),
