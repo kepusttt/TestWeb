@@ -1,0 +1,69 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+
+<div class="mainblock">
+
+    <div class="textblock">
+        <p class="Titleblock"><b>Растениеводство:</b></p>
+
+        {% for text_index in text_indexes %}
+        <p>{{ text_index.big_text }}</p>
+        {% endfor %}
+
+
+    </div>
+
+    <div class="contectblock">
+
+    <div class="simg">
+        {% for subimage in simg %}
+            {% if subimage.image %}
+                <img class="minimized2" src="{{ subimage.image.url }}" alt="{{ subimage.title }}">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+{% block title  %}
+Растениеводство
+{% endblock %}
+
+{% block script %}
+<script>
+    $(function(){
+  $('.minimized,.timage,.timageleft,.minimized2').click(function(event) {
+    var i_path = $(this).attr('src');
+    var i_placeholder = $(this).attr('alt'); // Получение текста из placeholder картинки
+    $('body').append('<div id="overlay"></div><div id="magnify"><img src="'+i_path+'"></div>');
+    $('#magnify').css({
+      left: ($(document).width() - $('#magnify').outerWidth())/2,
+      top: ($(window).height() - $('#magnify').outerHeight())/2
+    });
+    $('#overlay, #magnify').fadeIn('fast');
+
+    // Добавление div с текстом
+    var textDiv = '<div id="textDiv">' + i_placeholder + '</div>'; // Использование текста из placeholder картинки
+    $('body').append(textDiv);
+    var textDivWidth = $('#textDiv').outerWidth();
+    var textDivHeight = $('#textDiv').outerHeight();
+    $('#textDiv').css({
+      left: ($(document).width() - textDivWidth)/2,
+      top: 0,
+      color: 'white'
+    });
+  });
+
+  $('body').on('click', '#overlay', function(event) {
+    event.preventDefault();
+    $('#overlay, #magnify').fadeOut('fast', function() {
+      $('#close-popup, #magnify, #overlay, #textDiv').remove();
+    });
+  });
+});
+</script>
+{% endblock %}

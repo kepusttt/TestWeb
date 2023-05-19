@@ -1,0 +1,64 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+
+<div class="newblockmain">
+    {% for text_index in text_indexes %}
+    <div class="newblock">
+        <div class="newtitle">
+
+            <p><b>{{ text_index.title }}</b> <sup>{{ text_index.created_at|date }}</sup> </p>
+        </div>
+        <div class="newtext">
+            <p>{{ text_index.big_text|safe }}</p>
+        </div>
+        <div class="newimg">
+            {% for image in text_index.images.all %}
+                <img class="photonews" src="{{ image.image.url }}" alt="{{ text_index.ititle }}">
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
+
+{% block title  %}
+Новости
+{% endblock %}
+
+{% block script %}
+<script>
+    $(function(){
+  $('.minimized,.timage,.timageleft,.photonews').click(function(event) {
+    var i_path = $(this).attr('src');
+    var i_placeholder = $(this).attr('alt'); // Получение текста из placeholder картинки
+    $('body').append('<div id="overlay"></div><div id="magnify"><img src="'+i_path+'"></div>');
+    $('#magnify').css({
+      left: ($(document).width() - $('#magnify').outerWidth())/2,
+      top: ($(window).height() - $('#magnify').outerHeight())/2
+    });
+    $('#overlay, #magnify').fadeIn('fast');
+
+    // Добавление div с текстом
+    var textDiv = '<div id="textDiv">' + i_placeholder + '</div>'; // Использование текста из placeholder картинки
+    $('body').append(textDiv);
+    var textDivWidth = $('#textDiv').outerWidth();
+    var textDivHeight = $('#textDiv').outerHeight();
+    $('#textDiv').css({
+      left: ($(document).width() - textDivWidth)/2,
+      top: 0,
+      color: 'white'
+    });
+  });
+
+  $('body').on('click', '#overlay', function(event) {
+    event.preventDefault();
+    $('#overlay, #magnify').fadeOut('fast', function() {
+      $('#close-popup, #magnify, #overlay, #textDiv').remove();
+    });
+  });
+});
+</script>
+{% endblock %}

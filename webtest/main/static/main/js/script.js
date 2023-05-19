@@ -175,7 +175,7 @@ new Sim();
 
 
 $(function(){
-  $('.minimized,.timage,.timageleft').click(function(event) {
+  $('.minimized,.timage,.timageleft,.minimized2').click(function(event) {
     var i_path = $(this).attr('src');
     var i_placeholder = $(this).attr('alt'); // Получение текста из placeholder картинки
     $('body').append('<div id="overlay"></div><div id="magnify"><img src="'+i_path+'"></div>');

@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
-from main.models import Image, TextIndex, SubImage, CustomUser, productCards, appealFIZ, appealUR
+from main.models import Image, TextIndex, SubImage, CustomUser, productCards, appealFIZ, appealUR, AnimalsSI, TradeSI, PlantsSI, ChillSI, News
 from main.forms import CustomUserCreationForm
+from main.models import AnimalsText, ChillText, PlantsText, TradeText
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.urls import reverse
 import json
 
 
@@ -24,11 +28,23 @@ def product(request):
 
 
 
-def login(request):
-    return render(request, 'main/login.html')
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('main/news.html')  # Перенаправление на главную страницу после успешного входа
+        else:
+            error_message = 'Неправильная комбинация почты и пароля'
+            return render(request, 'main/login.html', {'error_message': error_message})
+    else:
+        return render(request, 'main/login.html')
 
-def account(request):
-    return render(request, 'main/account.html')
+def news_view(request):
+    text_indexes = News.objects.order_by('-id')  # Assuming 'id' represents the date of creation or a relevant field
+    return render(request, 'main/news.html',{'text_indexes': text_indexes})
 
 from django.http import JsonResponse
 
@@ -87,6 +103,30 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def Plants(request):
+    text_indexes = PlantsText.objects.all()
+    simg = PlantsSI.objects.all()
+    return render(request, 'main/plants.html', {'simg': simg, 'text_indexes': text_indexes})
+
+
+def Animals(request):
+    text_indexes = AnimalsText.objects.all()
+    simg = AnimalsSI.objects.all()
+    return render(request, 'main/animals.html', {'simg': simg,'text_indexes': text_indexes})
+
+
+def Trade(request):
+    text_indexes = TradeText.objects.all()
+    simg = TradeSI.objects.all()
+    return render(request, 'main/trade.html', {'simg': simg, 'text_indexes': text_indexes})
+
+
+def Chill(request):
+    text_indexes = ChillText.objects.all()
+    simg = ChillSI.objects.all()
+    return render(request, 'main/chill.html', {'simg': simg, 'text_indexes': text_indexes})
 
 
 

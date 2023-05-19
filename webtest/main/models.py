@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 
@@ -9,7 +10,7 @@ class productCards(models.Model):
     title = models.CharField(max_length=50, verbose_name='Заголовок')
     image = models.ImageField(upload_to='main/static/main/img', verbose_name='Картинка')  # Поле для хранения картинки
     text = models.TextField(verbose_name='Описание')  # Поле для хранения текста
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')  # Поле для хранения цены
+    pagetitle = models.CharField(max_length=50, verbose_name='Название страницы(dev)', editable=False)
 
     def __str__(self):
         return self.title
@@ -100,6 +101,12 @@ class CustomUser(AbstractBaseUser):
     def __str__(self):
         return self.email
 
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
@@ -137,3 +144,136 @@ class appealFIZ(models.Model):
             words = self.appeal.split()  # Разделяем текст на слова
             appeal = ' '.join(words[:3]) + '...'  # Объединяем первые три слова в строку
             return appeal
+
+
+class AnimalsSI(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    image = models.ImageField(upload_to='main/static/main/subimg', verbose_name='Картинка')
+
+    class Meta:
+        verbose_name = 'Картинки Животноводство'  # Название модели в единственном числе
+        verbose_name_plural = 'Картинки Животноводство'  # Название модели во множественном числе
+
+    def clean(self):
+        max_items = 3
+        if AnimalsSI.objects.count() >= max_items and not self.pk:
+            raise ValidationError('Максимальное количество объектов: %d' % max_items)
+
+    def __str__(self):
+        return self.title
+
+class PlantsSI(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    image = models.ImageField(upload_to='main/static/main/subimg', verbose_name='Картинка')
+
+    class Meta:
+        verbose_name = 'Картинки Растеиеводство'  # Название модели в единственном числе
+        verbose_name_plural = 'Картинки Растеиеводство'  # Название модели во множественном числе
+
+    def clean(self):
+        max_items = 3
+        if PlantsSI.objects.count() >= max_items and not self.pk:
+            raise ValidationError('Максимальное количество объектов: %d' % max_items)
+
+    def __str__(self):
+        return self.title
+
+class TradeSI(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    image = models.ImageField(upload_to='main/static/main/subimg', verbose_name='Картинка')
+
+    class Meta:
+        verbose_name = 'Картинки Торговля'  # Название модели в единственном числе
+        verbose_name_plural = 'Картинки Торговля'  # Название модели во множественном числе
+
+    def clean(self):
+        max_items = 3
+        if TradeSI.objects.count() >= max_items and not self.pk:
+            raise ValidationError('Максимальное количество объектов: %d' % max_items)
+
+    def __str__(self):
+        return self.title
+
+class ChillSI(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    image = models.ImageField(upload_to='main/static/main/subimg', verbose_name='Картинка')
+
+    class Meta:
+        verbose_name = 'Картинки Бани'  # Название модели в единственном числе
+        verbose_name_plural = 'Картинки Бани'  # Название модели во множественном числе
+
+    def clean(self):
+        max_items = 3
+        if ChillSI.objects.count() >= max_items and not self.pk:
+            raise ValidationError('Максимальное количество объектов: %d' % max_items)
+
+    def __str__(self):
+        return self.title
+
+class AnimalsText(models.Model):
+    big_text = models.TextField(verbose_name='Текст')
+
+    class Meta:
+        verbose_name = 'Текст Животноводства'  # Название модели в единственном числе
+        verbose_name_plural = 'Тексты Животноводства'  # Название модели во множественном числе
+
+    def __str__(self):
+        words = self.big_text.split()  # Разделяем текст на слова
+        first_three_words = ' '.join(words[:3]) + '...'  # Объединяем первые три слова в строку
+        return first_three_words
+
+class PlantsText(models.Model):
+    big_text = models.TextField(verbose_name='Текст')
+
+    class Meta:
+        verbose_name = 'Текст Растениеводства'  # Название модели в единственном числе
+        verbose_name_plural = 'Тексты Растениеводства'  # Название модели во множественном числе
+
+    def __str__(self):
+        words = self.big_text.split()  # Разделяем текст на слова
+        first_three_words = ' '.join(words[:3]) + '...'  # Объединяем первые три слова в строку
+        return first_three_words
+
+class TradeText(models.Model):
+    big_text = models.TextField(verbose_name='Текст')
+
+    class Meta:
+        verbose_name = 'Текст Торговли'  # Название модели в единственном числе
+        verbose_name_plural = 'Тексты Торговли'  # Название модели во множественном числе
+
+    def __str__(self):
+        words = self.big_text.split()  # Разделяем текст на слова
+        first_three_words = ' '.join(words[:3]) + '...'  # Объединяем первые три слова в строку
+        return first_three_words
+
+class ChillText(models.Model):
+    big_text = models.TextField(verbose_name='Текст')
+
+    class Meta:
+        verbose_name = 'Текст Бани'  # Название модели в единственном числе
+        verbose_name_plural = 'Тексты Бани'  # Название модели во множественном числе
+
+    def __str__(self):
+        words = self.big_text.split()  # Разделяем текст на слова
+        first_three_words = ' '.join(words[:3]) + '...'  # Объединяем первые три слова в строку
+        return first_three_words
+
+class News(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    big_text = models.TextField(verbose_name='Текст')
+    images = models.ManyToManyField('ImageN', verbose_name='Картинки')
+    ititle = models.CharField(max_length=255, verbose_name='Подпись')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата написания')
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+    def __str__(self):
+        return self.title
+
+class ImageN(models.Model):
+    image = models.ImageField(upload_to='main/static/main/subimg', verbose_name='Картинка')
+
+    def __str__(self):
+        return str(self.image)
