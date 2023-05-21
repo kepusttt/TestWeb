@@ -173,25 +173,66 @@ Sim.initialize = function(that) {
 new Sim();
 
 
+
 $(function(){
-  $('.minimized,.timage,.timageleft').click(function(event) {
+  $('.minimized, .timage, .timageleft, .minimized2').click(function(event) {
     var i_path = $(this).attr('src');
+    var i_placeholder = $(this).attr('alt');
     $('body').append('<div id="overlay"></div><div id="magnify"><img src="'+i_path+'"></div>');
+
+    var textDiv = '<div id="textDiv">' + i_placeholder + '</div>';
+    $('#magnify').append(textDiv);
+
+    var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
+    var magnifyWidth = $('#magnify').outerWidth();
+    var magnifyHeight = $('#magnify').outerHeight();
+
+    var leftPosition = (windowWidth - magnifyWidth) / 2;
+    var topPosition = (windowHeight * 0.02);
+
     $('#magnify').css({
-     left: ($(document).width() - $('#magnify').outerWidth())/2,
-     // top: ($(document).height() - $('#magnify').outerHeight())/2 upd: 24.10.2016
-            top: ($(window).height() - $('#magnify').outerHeight())/2
-   });
+      // left: leftPosition + 'px',
+      // top: topPosition + 'px'
+    });
     $('#overlay, #magnify').fadeIn('fast');
+
+    var textDivWidth = $('#textDiv').outerWidth();
+    var textDivHeight = $('#textDiv').outerHeight();
+    var imgWidth = $('#magnify img').outerWidth();
+    var imgHeight = $('#magnify img').outerHeight();
+
+    if (imgHeight > 400) {
+      var ratio = 400 / imgHeight;
+      imgWidth *= ratio;
+      imgHeight = 400;
+    }
+
+    $('#magnify img').css({
+      width: imgWidth,
+      height: imgHeight
+    });
+
+    $('#textDiv').css({
+      left: $('#magnify').position().left + imgWidth,
+      top: $('#magnify').position().top,
+      background: 'rgba(0,0,0,.5)',
+      borderRadius: '10px',
+      color: 'white',
+      fontFamily: 'Exo 2, sans-serif'
+    });
   });
 
   $('body').on('click', '#overlay', function(event) {
     event.preventDefault();
-    $('#overlay, #magnify').fadeOut('fast', function() {
-      $('#close-popup, #magnify, #overlay').remove();
+    $('#overlay, #magnify, #textDiv').fadeOut('fast', function() {
+      $('#close-popup, #magnify, #overlay, #textDiv').remove();
     });
   });
 });
+
+
+
 
 
 function ShowPass() {

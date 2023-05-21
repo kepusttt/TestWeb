@@ -1,0 +1,121 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+
+
+<div class="newblockmain">
+
+    <div class="funcblock">
+            <form method="GET" action="{% url 'news_view' %}">
+                <input type="text" name="search_query" value="{{ search_query }}" placeholder="Поиск" class="search-input">
+                <button type="submit"  id="search" class="btn btn-outline-primary">Поиск</button>
+                {% if search_query %}
+                    <button type="button" id="cancel" onclick="window.location.href='{% url 'news_view' %}'" class="btn btn-outline-warning">Отменить</button>
+                {% endif %}
+                 <button type="submit" name="sort_order"  id="sortb" class="btn btn-outline-secondary"  value="{% if sort_order == '-id' %}id{% else %}-id{% endif %}">
+            {% if sort_order == '-id' %}
+                Сначала старое
+            {% else %}
+                Сначала новое
+            {% endif %}
+        </button>
+            </form>
+
+    </div>
+
+  {% if text_indexes %}
+    {% for text_index in text_indexes %}
+    <div class="newblock">
+      <div class="newtitle">
+        <p><b>{{ text_index.title }}</b> <sup>{{ text_index.created_at|date }}</sup> </p>
+      </div>
+      <div class="newtext">
+        <p>{{ text_index.big_text|safe }}</p>
+      </div>
+      <div class="newimg">
+        {% for image in text_index.images.all %}
+        <img class="photonews" src="{{ image.image.url }}" alt="{{ text_index.ititle }}">
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+   {% else %}
+    <div class="err">
+        <p class="not-found">Ничего не найдено</p>
+        <button onclick="history.back()"  id="retry" class="btn btn-outline-warning">Вернуться назад</button>
+    </div>
+
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block title  %}
+Новости
+{% endblock %}
+
+{% block script %}
+<script>
+    $(function(){
+  $('.minimized,.timage,.timageleft,.photonews').click(function(event) {
+    var i_path = $(this).attr('src');
+    var i_placeholder = $(this).attr('alt');
+    $('body').append('<div id="overlay"></div><div id="magnify"><img src="'+i_path+'"></div>');
+
+    var textDiv = '<div id="textDiv">' + i_placeholder + '</div>';
+    $('#magnify').append(textDiv);
+
+    var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
+    var magnifyWidth = $('#magnify').outerWidth();
+    var magnifyHeight = $('#magnify').outerHeight();
+
+    var leftPosition = (windowWidth - magnifyWidth) / 2;
+    var topPosition = (windowHeight * 0.02);
+
+    $('#magnify').css({
+      // left: leftPosition + 'px',
+      // top: topPosition + 'px'
+    });
+    $('#overlay, #magnify').fadeIn('fast');
+
+    var textDivWidth = $('#textDiv').outerWidth();
+    var textDivHeight = $('#textDiv').outerHeight();
+    var imgWidth = $('#magnify img').outerWidth();
+    var imgHeight = $('#magnify img').outerHeight();
+
+    if (imgHeight > 400) {
+      var ratio = 400 / imgHeight;
+      imgWidth *= ratio;
+      imgHeight = 400;
+    }
+
+    $('#magnify img').css({
+      width: imgWidth,
+      height: imgHeight
+    });
+
+    $('#textDiv').css({
+      left: $('#magnify').position().left + imgWidth,
+      top: $('#magnify').position().top,
+      background: 'rgba(0,0,0,.5)',
+      borderRadius: '10px',
+      color: 'white',
+      fontFamily: 'Exo 2, sans-serif'
+    });
+  });
+
+  $('body').on('click', '#overlay', function(event) {
+    event.preventDefault();
+    $('#overlay, #magnify, #textDiv').fadeOut('fast', function() {
+      $('#close-popup, #magnify, #overlay, #textDiv').remove();
+    });
+  });
+});
+</script>
+{% endblock %}

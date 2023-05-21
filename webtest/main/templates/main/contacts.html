@@ -1,0 +1,147 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+<div class="contact">
+    <p style="font-size: 35px" ><b>Контактные данные:</b></p>
+    <p> <b>Телефон:</b>  +375 (2345) 6-26-73(Приемная)</p>
+        <p><b>Электронная почта:</b> avtuki@yandex.ru</p>
+    <p> <b>Адрес:</b>   Гомельская область, Калинковичский р-н, д. Сырод, ул. Мира, 1</p>
+
+</div>
+
+{% csrf_token %}
+<div class="contactfieldFiz">
+    <p>ФИО</p>
+    <input type="text" id="fiofiz">
+    <p>Телефон</p>
+    <input type="text" id="phonefiz">
+    <p>Адрес</p>
+    <input type="text" id="addressfiz">
+    <p>Обращение:</p>
+    <textarea placeholder="Обращение" id="appealfiz"> </textarea>
+    <button type="submit" id="fizbut" class="btn btn-outline-success">Отправить</button>
+    <button type="submit" id="urface" class="btn btn-outline-primary">Для Юр. Лиц</button>
+
+
+</div>
+<div class="contactfieldYur">
+
+    <p>Юридическое лицо</p>
+    <input type="text" id="urfacei">
+    <p>ФИО Руководителя</p>
+    <input type="text" id="fioruki">
+    <p>Телефон</p>
+    <input type="text" id="phoneuri">
+     <p>Юридический адрес</p>
+    <input type="text" id="addressuri">
+
+    <p>Обращение:</p>
+    <textarea placeholder="Обращение" id="appealURi"> </textarea>
+    <button type="submit" id="senurb" class="btn btn-outline-success">Отправить</button>
+    <button type="submit" id="urface2" class="btn btn-outline-primary">Для Физ. Лиц</button>
+
+</div>
+
+
+
+
+
+
+<div id="map-container-google-1" class="z-depth-1-half map-container" >
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2450.2612763493403!2d29.42876998017975!3d52.11137471642732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46d67294c0000001%3A0x1a15898cdba1c7b5!2z0KHQn9CaIMKr0JTRgNGD0LbQsdCwLdCQ0LLRgtGO0LrQuMK7Lg!5e0!3m2!1sru!2sby!4v1684276093721!5m2!1sru!2sby" frameborder="0"
+    style="border:0" class="map" allowfullscreen></iframe>
+</div>
+
+
+{% endblock %}
+
+{% block title  %}
+Контакты
+{% endblock %}
+
+{% block script %}
+<script>
+ // Получаем кнопку и поле по их идентификаторам
+  var hideButton = document.getElementById('urface');
+  var contactField = document.querySelector('.contactfieldFiz');
+
+  // Добавляем обработчик события клика на кнопку
+  hideButton.addEventListener('click', function() {
+    // Изменяем видимость поля при каждом клике
+    contactField.style.display = contactField.style.display === 'none' ? 'flex' : 'none';
+  });
+</script>
+<script>
+ // Получаем кнопку и поле по их идентификаторам
+  var hideButton2 = document.getElementById('urface2');
+  var contactField = document.querySelector('.contactfieldYur');
+
+  // Добавляем обработчик события клика на кнопку
+  hideButton2.addEventListener('click', function() {
+    // Изменяем видимость поля при каждом клике
+    contactField.style.display = contactField.style.display === 'none' ? 'flex' : 'none';
+  });
+</script>
+
+<script>
+document.getElementById("senurb").addEventListener("click", function() {
+    var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var UrFace = document.getElementById("urfacei").value;
+    var Fio = document.getElementById("fioruki").value;
+    var Phone = document.getElementById("phoneuri").value;
+    var address = document.getElementById("addressuri").value;
+    var appeal = document.getElementById("appealURi").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "{% url 'contacts' %}", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("X-CSRFToken", csrfToken);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Обработка успешного ответа от сервера
+            console.log(xhr.responseText);
+        }
+    };
+
+    var data = JSON.stringify({
+        "UrFace": UrFace,
+        "Fio": Fio,
+        "Phone": Phone,
+        "address": address,
+        "appeal": appeal
+    });
+    xhr.send(data);
+});
+
+</script>
+<script>
+
+document.getElementById("fizbut").addEventListener("click", function() {
+    var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var Fio = document.getElementById("fiofiz").value;
+    var Phone = document.getElementById("phonefiz").value;
+    var address = document.getElementById("addressfiz").value;
+    var appeal = document.getElementById("appealfiz").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "{% url 'contacts' %}", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("X-CSRFToken", csrfToken);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Обработка успешного ответа от сервера
+            console.log(xhr.responseText);
+        }
+    };
+
+    var data = JSON.stringify({
+        "Fio": Fio,
+        "Phone": Phone,
+        "address": address,
+        "appeal": appeal
+    });
+    xhr.send(data);
+});
+</script>
+
+{% endblock %}

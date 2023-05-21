@@ -9,8 +9,8 @@ aside
 {
     min-height: 100%;
     max-height: 100%;
-    min-width: 210px;
-    max-width: 210px;
+    min-width: 220px;
+    max-width: 220px;
     float: left;
     background: #181818;
     width: 15%;
@@ -38,12 +38,13 @@ aside img
 aside .logo
 {
 
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     position: relative;
     top: -5%;
     display: block;
-    justify-content: center;
+    justify-content: Center;
+
 
 }
 
@@ -86,8 +87,6 @@ main .features
 {
     font-family: 'Exo 2', sans-serif;
     float:left;
-    display: inline-block;
-    justify-content: left;
     margin-left: 20%;
     color: #ffff;
     vertical-align: middle;
@@ -119,8 +118,8 @@ img {
 
 .sim-slider {
     border-radius: 10px;
-      max-width: 50%;
-      min-width: 50%;
+      max-width: 57%;
+      min-width: 57%;
 
   display: inline-block;
     margin-top: 2%;
@@ -222,13 +221,15 @@ span.sim-dot {
 .sdiv
 {
 
-    margin-right: 8%;
+    margin-right: 0%;
     margin-top: 1.6%;
     width: 20%;
-    height: 20%;
-    max-width: 20%;
-    max-height: 20%;
-
+    height: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
     float: right;
 
 }
@@ -236,19 +237,22 @@ span.sim-dot {
 .sdiv img
 {
 float: left;
-     width: 200px;
-  height: 175px;
-  object-fit: cover;
+    width: 225px;
+    height: 270px;
+     object-fit: cover;
 }
 
 
 .minimized
 {
+
     cursor: pointer;
     margin-right: 8%;
     margin-top: 2%;
     justify-content: left;
     max-width: 100%;
+    min-height: 100%;
+
     max-height: 100%;
     border: 2px solid darkslategrey;
     float: right;
@@ -270,6 +274,9 @@ float: left;
   max-width: 600px;
   height: auto;
   z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #magnify img {
   width: 100%;
@@ -283,7 +290,7 @@ float: left;
   left: 0;
   height: 100%;
   width: 100%;
-  opacity: 0.5;
+  opacity: 0.8;
   z-index: 9990;
 }
 /* кнопка закрытия */
@@ -542,4 +549,780 @@ label {
 .alert.show {
   opacity: 1;
   transform: translateY(0%);
+}
+
+
+
+.featuresa
+{
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 0px;
+    display: grid;
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    margin-left: 20%;
+    color: #ffff;
+    vertical-align: middle;
+    margin-top: 1.5%;
+    text-align: center;
+    width: 75%;
+
+}
+
+.featuresa h1
+{font-size: 50px;
+ font-family: 'Exo 2', sans-serif;
+}
+.featuresa p
+{
+    max-width: 100%;
+    min-width: 100%;
+    margin: 2% auto;
+    text-align: justify;
+    font-family: 'Exo 2', sans-serif;}
+
+.imagecard{
+    max-width: 100%;
+    min-height: 170px;
+    max-height: 170px;
+    border: 0.3px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.card{
+    border-radius: 15px;
+    background: #181818;
+
+}
+
+
+
+.textcard{
+    padding: 10px 10px 10px 10px ;
+    height: 40%;
+    word-wrap: break-word;
+    max-width: 100%;
+    max-height: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.textcard p{
+    margin: 0px 0px 0px 2px ;
+    text-align: center;
+}
+.card button{
+  border-radius: 12px;
+}
+
+.contact{
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    margin-left: 20%;
+    color: #ffff;
+    vertical-align: middle;
+    margin: 80px 0px 20px 20% ;
+    text-align: left;
+    width: 75%;
+}
+.contact p{
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    color: #ffff;
+    vertical-align: middle;
+    margin: 2px 0px 0px 0% ;
+    text-align: left;
+    width: 75%;
+}
+
+.z-depth-1-half{
+    margin-left: 20%;
+
+}
+.map{
+    height: 350px;
+    width: 500px;
+    border-radius: 15px;
+}
+
+.textinp{
+    margin-left: 20%;
+}
+.input-group{
+    margin-top: 222px;
+    margin-left: 40%;
+    position: absolute;
+    width: 500px;
+    min-width: 500px;
+    height: 350px;
+    min-height: 350px;
+    padding: 10px 10px 10px 10px ;
+
+}
+.form-control{
+    font-size: 20px;
+    border-radius: 15px;
+    width: 500px;
+    min-width: 500px;
+    height: 350px;
+    min-height: 350px;
+    resize: none;
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    color: #000000;
+    vertical-align: middle;
+    margin: 2px 0px 0px 0% ;
+    text-align: left;
+}
+
+.userdata{
+
+    margin-left: 40.6%;
+    position: absolute;
+    margin-top: 185px;
+}
+
+.userdata input{
+    font-size: 20px;
+    width: 500px;
+    height: 35px ;
+    border-radius: 12px;
+    border: 0;
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    color: #000000;
+    vertical-align: middle;
+    margin: 2px 0px 0px 0% ;
+    text-align: left;
+    outline: none;
+    transition: .05s;
+    padding: 14px;
+
+}
+.userdata input:focus{
+    outline: rgb(106, 90, 205, .5) 3.5px solid;
+
+
+}
+
+.send{
+    position: absolute;
+    margin-left: 84%;
+    margin-top: 590px;
+}
+.send button{
+    border-radius: 15px;
+    width: 140px;
+
+}
+
+.pinp{
+    position: absolute;
+    font-size: 35px;
+    font-family: 'Exo 2', sans-serif;
+    float:left;
+    color: #ffff;
+    vertical-align: middle;
+    margin: 130px 0px 5px 40.5%;
+    text-align: left;
+
+}
+
+#textDiv{
+
+    text-align: center;
+    font-weight: 500;
+    font-family: 'Exo 2', sans-serif;
+}
+
+/*contact*/
+
+.contactfieldFiz{
+    padding: 20px;
+    min-width: 43%;
+    min-height: 90%;
+    margin-left: 55%;
+    position: absolute;
+    margin-top: 2%;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.contactfieldFiz input{
+    border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 15px;
+    color: white;
+    background-color: #2c2c2c;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.contactfieldFiz p
+{
+    color: white;
+    margin: 0;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.contactfieldFiz input:focus
+{
+    outline: 0;
+
+}
+
+.contactfieldFiz textarea:focus{
+    outline: 0;
+}
+
+.contactfieldFiz textarea{
+    background-color: #2c2c2c;
+    color: white;
+    padding-top: 15px;
+   border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 300px;
+    font-size: 15px;
+    padding-left: 15px;
+    resize: none;
+     font-family: 'Exo 2', sans-serif;
+}
+.contactfieldFiz button{
+    margin-top: 1%;
+    flex-direction: row;
+    width: 30%;
+
+}
+.contactfieldYur{
+    padding: 20px;
+    min-width: 43%;
+    min-height: 90%;
+    margin-left: 55%;
+    position: absolute;
+    margin-top: 2%;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.contactfieldYur input{
+    border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 15px;
+    color: white;
+    background-color: #2c2c2c;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.contactfieldYur p
+{
+    color: white;
+    margin: 0;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.contactfieldYur input:focus
+{
+    outline: 0;
+
+}
+
+.contactfieldYur textarea:focus{
+    outline: 0;
+}
+
+.contactfieldYur textarea{
+    background-color: #2c2c2c;
+    color: white;
+    padding-top: 15px;
+   border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 250px;
+    font-size: 15px;
+    padding-left: 15px;
+    resize: none;
+     font-family: 'Exo 2', sans-serif;
+}
+.contactfieldYur button{
+    margin-top: 1%;
+    flex-direction: row;
+    width: 30%;
+}
+
+.cardplace{
+    display: flex;
+    flex-direction: row;
+    grid-gap: 5%;
+    flex-wrap: wrap;
+    width: 85%;
+    margin-left: 7%;
+    justify-content: center;
+    margin-bottom: 5%;
+
+}
+.card{
+    flex-direction: column;
+    display: flex;
+    height: 50%;
+    max-height: 400px;
+    min-height: 400px;
+    width: 50%;
+    max-width: 400px;
+
+    min-width: 400px;
+    padding: 10px 10px 10px 10px;
+}
+
+
+
+
+
+.imgdiv{
+    overflow: hidden;
+    height: 50%;
+    width: 100%;
+
+
+}
+
+.desc{
+    height: 30%;
+}
+.desc p{
+    text-align: left;
+}
+
+.mainblock{
+    /*border: black 1px dashed;*/
+    display: flex;
+    padding: 1%;
+    min-width: 82%;
+    margin-top: 2%;
+    min-height: 90%;
+    margin-left: 16%;
+    position: absolute;
+    grid-gap: 3%;
+}
+
+.textblock{
+    /*border: black 1px dashed;*/
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    min-width: 67%;
+    font-family: 'Exo 2', sans-serif;
+    color: white;
+}
+
+.textblock p{
+    margin-bottom: 0;
+}
+
+.contectblock{
+    /*border: black 1px dashed;*/
+    min-width: 30%;
+
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1%;
+    padding: 1%;
+}
+
+.Titleblock{
+    font-size: 50px;
+    margin-bottom: 0;
+}
+
+.simg{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+}
+
+.minimized2{
+    cursor: pointer;
+    max-width: 100%;
+    max-height: 200px;
+    min-height: 200px;
+    border: 2px solid darkslategrey;
+    float: right;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.minimized2:hover
+{
+    transition: all 0.1s ease;
+    border: 3px solid white;
+
+}.photonews{
+    cursor: pointer;
+    max-width: 100%;
+    max-height: 200px;
+    min-height: 200px;
+    border: 2px solid darkslategrey;
+    float: right;
+    border-radius: 10px;
+}
+
+.photonews:hover
+{
+    transition: all 0.1s ease;
+    border: 3px solid white;
+
+}
+
+.newblockmain
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    grid-gap: 50px;
+
+    /*border: black 1px dashed;*/
+    min-width: 80%;
+
+    position: absolute;
+    margin-left: 14%;
+    margin-top: 1%;
+    box-sizing: border-box;
+    padding: 1%;
+
+}
+
+.newblock{
+    min-width: 100%;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    padding: 2%;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    grid-gap: .5%;
+    height:auto;
+    /*border: 1px black dashed;*/
+}
+
+.newimg{
+    /*border: white 1px dashed;*/
+    display: flex;
+    justify-content: space-between;
+    min-height: 30%;
+}
+.newtext{
+    padding: 1%;
+    /*border: white 1px dashed;*/
+    display: flex;
+    justify-content: space-between;
+    min-height: auto;
+}
+
+.newtext p{
+     font-family: 'Exo 2', sans-serif;
+    color: white;
+}
+
+.newtitle{
+
+    min-height: 4%;
+    padding: 1%;
+    height: auto;
+     font-family: 'Exo 2', sans-serif;
+    color: white;
+    font-size: 24px;
+}
+
+
+
+.newimg{
+    padding: 1%;
+}
+
+.newimg img{
+    min-height: 350px;
+    max-height: 350px;
+    min-width: 350px;
+    max-width: 350px;
+    object-fit: cover;
+}
+
+.picblock{
+    /*border: red 1px dashed;*/
+    min-height: auto;
+    width: 100%;
+
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 3%;
+    grid-gap: 5%;
+
+}
+
+.moredesc
+{
+    /*border: red 1px dashed;*/
+    min-height: 200px;
+    height: 25%;
+    width: 25%;
+    min-width: 200px;
+
+
+
+
+}
+
+.moredesc img
+{
+    /*border: red 1px dashed;*/
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+
+}
+
+
+.image-description {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    transition: .4s;
+}
+
+.moredesc {
+    position: relative;
+    border-radius: 10px;
+
+}
+
+.moredesc:hover .minimized3 {
+    filter: brightness(15%);
+    transition: .1s;
+    cursor: pointer;
+}
+
+.moredesc:hover {
+
+    outline: white 3px solid;
+    transition: .1s;
+}
+
+
+.moredesc:hover .image-description {
+    display: block;
+}
+
+.contactfieldFiz2{
+    padding: 20px;
+    min-width: 22%;
+    min-height: 60%;
+    max-width: 60%;
+    margin-top: 10%;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.contactfieldFiz2 input{
+    border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 15px;
+    color: white;
+    background-color: #2c2c2c;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.contactfieldFiz2 p
+{
+    color: white;
+    margin: 0;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.contactfieldFiz2 input:focus
+{
+    outline: 0;
+
+}
+
+.contactfieldFiz2 textarea:focus{
+    outline: 0;
+}
+
+.contactfieldFiz2 textarea{
+    background-color: #2c2c2c;
+    color: white;
+    padding-top: 15px;
+   border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 300px;
+    font-size: 15px;
+    padding-left: 15px;
+    resize: none;
+     font-family: 'Exo 2', sans-serif;
+}
+.contactfieldFiz2 button{
+    margin-top: 1%;
+    flex-direction: row;
+    width: 30%;
+
+}
+
+.contactfieldYur2{
+
+    padding: 20px;
+    max-width: 60%;
+    min-height: 40%;
+    margin-top: 2%;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.contactfieldYur2 input{
+    border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 15px;
+    color: white;
+    background-color: #2c2c2c;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.contactfieldYur2 p
+{
+    color: white;
+    margin: 0;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.contactfieldYur2 input:focus
+{
+    outline: 0;
+
+}
+
+.contactfieldYur2 textarea:focus{
+    outline: 0;
+}
+
+.contactfieldYur2 textarea{
+    background-color: #2c2c2c;
+    color: white;
+    padding-top: 15px;
+   border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 250px;
+    font-size: 15px;
+    padding-left: 15px;
+    resize: none;
+     font-family: 'Exo 2', sans-serif;
+}
+.contactfieldYur2 button{
+    margin-top: 1%;
+    flex-direction: row;
+    width: 30%;
+}
+
+.funcblock{
+    /*border: 1px black dashed;*/
+    min-height: 50px;
+
+
+}
+
+
+.search-input {
+    border-radius: 15px;
+    border: 0;
+    width: 25%;
+    height: 40px;
+    font-size: 15px;
+    padding-left: 15px;
+    color: white;
+    background-color: #1a1a1a;
+    font-family: 'Exo 2', sans-serif;
+}
+#search{
+    margin-top: -4.5px;
+    height: 39px;
+    border-radius: 15px;
+}
+
+#cancel{
+    margin-top: -4.5px;
+    height: 39px;
+    border-radius: 15px;
+}
+
+.not-found {
+    color: white;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 28px;
+    text-align: center;
+}
+
+#retry{
+    border-radius: 10px;
+    max-width: 25%;
+
+}
+
+.err{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#sortb{
+    margin-top: -4.5px;
+    height: 39px;
+    border-radius: 15px;
 }

@@ -1,13 +1,64 @@
 {% extends 'main/layout.html' %}
-
+{% load static %}
 {% block content  %}
-<div class="features">
-    <h1>Наша продукция</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus massa eget mollis auctor. Ut eget fringilla elit, vitae faucibus massa. Nullam ut risus venenatis, porta nisi et, convallis urna. Duis euismod euismod lacus sit amet vestibulum. Cras eu augue eu massa luctus ultrices pharetra bibendum nisi. Pellentesque vel pellentesque ex. Mauris gravida massa sed mauris condimentum rutrum eu sed nisi. Duis eleifend diam pulvinar.</p>
-    <button class="btn btn-outline-primary">Primary</button>
+<div class="featuresa">
+
+
+    <div class="cardplace">
+{% for product in products %}
+        <div class="card">
+            <div class="imgdiv">
+                <img src="{{ product.image.url }}" alt="">
+            </div>
+            <p><b>{{ product.title }}</b></p>
+            <div class="desc">
+                <p class="tcard">{{ product.text }}</p>
+            </div>
+            <a href="{{ product.pagetitle }}"><button type="submit" class="btn btn-outline-success">Подробнее</button></a>
+
+
+        </div>
+{% endfor %}
+    </div>
+
+<!--         {% for product in products %}-->
+<!--    <div class="card">-->
+<!--    <img src="{{ product.image.url }}" class="imagecard" alt="">-->
+<!--    <div class="textcard">-->
+<!--        <p class="cardtitle"> <b>{{ product.title }}</b> </p>-->
+<!--        <p class="tcard">{{ product.text }}</p>-->
+<!--    </div>-->
+<!--    <button class="btn btn-outline-primary">Подробнее</button>-->
+<!--    </div>-->
+<!--{% endfor %}-->
+
+
+
+
+
+
+
+
 </div>
 {% endblock %}
 
 {% block title  %}
-Продукция
+Направления деятельности
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'main/js/script.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Clamp.js/0.5.1/clamp.min.js"></script>
+<script>
+   var textcards = document.querySelectorAll(".card p");
+textcards.forEach(function(textcard) {
+  $clamp(textcard, {
+    clamp: 3, // Число строк
+    useNativeClamp: false // НЕ используем -webkit-line-clamp
+  });
+});
+  </script>
+
+
 {% endblock %}

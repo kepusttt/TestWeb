@@ -1,0 +1,196 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+
+<div class="mainblock">
+
+    <div class="textblock">
+        <p class="Titleblock"><b>{{ card.title }}:</b></p>
+
+
+        <p>{{ card.desc }}</p>
+        <p> <b>Цена за {{ card.ed }}: {{ card.price }} BYN</b> </p>
+
+        <div class="contactfieldFiz2">
+                    <p>Продукт:</p>
+                    <input type="text" id="productfiz" value="{{ card.title }}" readonly>
+                    <p>ФИО</p>
+                    <input type="text" id="fiofiz" placeholder="ФИО">
+                    <p>Телефон</p>
+                    <input type="text" id="phonefiz" placeholder="Телефон">
+                    <p>Адрес</p>
+                    <input type="text" id="addressfiz" placeholder="Адрес">
+                    <p>Количество ({{ card.ed }}):</p>
+                    <input type="text" id="colvo" placeholder="Количество">
+
+                    <button type="submit" id="fizbut2" class="btn btn-outline-success">Заказать</button>
+                    <button type="submit" id="urface" class="btn btn-outline-primary">Для Юр. Лиц</button>
+        </div>
+
+        <div class="contactfieldYur2">
+            <p>Продукт:</p>
+            <input type="text" id="productur" value="{{ card.title }}" readonly >
+            <p>Юридическое лицо</p>
+            <input type="text" id="urfacei" placeholder="Юр. Лицо">
+            <p>ФИО Руководителя</p>
+            <input type="text" id="fioruki" placeholder="ФИО руководителя">
+            <p>Телефон</p>
+            <input type="text" id="phoneuri" placeholder="Телефон">
+             <p>Юридический адрес</p>
+            <input type="text" id="addressuri" placeholder="Юр. Адрес">
+            <p>Количество(кг):</p>
+            <input type="text" id="colvouri" placeholder="Количество">
+            <button type="submit" id="senurb" class="btn btn-outline-success">Заказать</button>
+            <button type="submit" id="urface2" class="btn btn-outline-primary">Для Физ. Лиц</button>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="contectblock">
+
+    <div class="simg">
+
+                <img class="minimized2" src="{{ card.image.url }}" alt="{{ card.title }}">
+
+
+
+    </div>
+
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+{% block title  %}
+{{ card.title }}
+{% endblock %}
+
+{% block script %}
+<script>
+    $(function(){
+  $('.minimized,.timage,.timageleft,.minimized2').click(function(event) {
+    var i_path = $(this).attr('src');
+    var i_placeholder = $(this).attr('alt'); // Получение текста из placeholder картинки
+    $('body').append('<div id="overlay"></div><div id="magnify"><img src="'+i_path+'"></div>');
+    $('#magnify').css({
+      left: ($(document).width() - $('#magnify').outerWidth())/2,
+      top: ($(window).height() - $('#magnify').outerHeight())/2
+    });
+    $('#overlay, #magnify').fadeIn('fast');
+
+    // Добавление div с текстом
+    var textDiv = '<div id="textDiv">' + i_placeholder + '</div>'; // Использование текста из placeholder картинки
+    $('body').append(textDiv);
+    var textDivWidth = $('#textDiv').outerWidth();
+    var textDivHeight = $('#textDiv').outerHeight();
+    $('#textDiv').css({
+      left: ($(document).width() - textDivWidth)/2,
+      top: 0,
+      color: 'white'
+    });
+  });
+
+  $('body').on('click', '#overlay', function(event) {
+    event.preventDefault();
+    $('#overlay, #magnify').fadeOut('fast', function() {
+      $('#close-popup, #magnify, #overlay, #textDiv').remove();
+    });
+  });
+});
+</script>
+
+<script>
+ document.getElementById("urface").addEventListener("click", function() {
+    document.querySelector(".contactfieldYur2").style.display = "flex";
+    document.querySelector(".contactfieldFiz2").style.display = "none";
+});
+
+document.getElementById("urface2").addEventListener("click", function() {
+    document.querySelector(".contactfieldYur2").style.display = "none";
+    document.querySelector(".contactfieldFiz2").style.display = "flex";
+});
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#fizbut2').click(function(event) {
+        event.preventDefault();
+
+        var product = $('#productfiz').val();
+        var fio = $('#fiofiz').val();
+        var phone = $('#phonefiz').val();
+        var address = $('#addressfiz').val();
+        var colvo = $('#colvo').val();
+
+        $.ajax({
+            url: '/create_order/',  // Используйте ваш URL-путь для представления create_order
+            type: 'POST',
+            data: {
+                'productfiz': product,
+                'fiofiz': fio,
+                'phonefiz': phone,
+                'addressfiz': address,
+                'colvo': colvo,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Заказ успешно создан.');
+                } else {
+                    alert('Не удалось создать заказ.');
+                }
+            },
+            error: function() {
+                alert('Произошла ошибка при создании заказа.');
+            }
+        });
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('#senurb').click(function(event) {
+        event.preventDefault();
+
+        var product = $('#productur').val();
+        var urFace = $('#urfacei').val();
+        var fioRuk = $('#fioruki').val();
+        var phone = $('#phoneuri').val();
+        var urAddress = $('#addressuri').val();
+        var colvo = $('#colvouri').val();
+
+        $.ajax({
+            url: '/create_order_ur/',  // Используйте ваш URL-путь для представления create_order_ur
+            type: 'POST',
+            data: {
+                'productur': product,
+                'urfacei': urFace,
+                'fioruki': fioRuk,
+                'phoneuri': phone,
+                'addressuri': urAddress,
+                'colvouri': colvo,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Заказ успешно создан.');
+                } else {
+                    alert('Не удалось создать заказ.');
+                }
+            },
+            error: function() {
+                alert('Произошла ошибка при создании заказа.');
+            }
+        });
+    });
+});
+</script>
+
+{% endblock %}
