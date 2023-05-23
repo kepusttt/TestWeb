@@ -277,3 +277,70 @@ class ImageN(models.Model):
 
     def __str__(self):
         return str(self.image)
+
+
+
+class PlantsCard(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    image = models.ImageField(upload_to='main/static/main/subimg', verbose_name='Картинка')
+    desc = models.TextField()
+    price = models.DecimalField(max_digits=3, decimal_places=2)
+    ed = models.CharField(max_length=5, verbose_name='Единица Измерения')
+
+    class Meta:
+        verbose_name = 'Продукция Растеиеводство'  # Название модели в единственном числе
+        verbose_name_plural = 'Продукция Растеиеводство'  # Название модели во множественном числе
+
+
+    def __str__(self):
+        return self.title
+
+class ProductOrderFiz(models.Model):
+    product = models.CharField(max_length=255, verbose_name='Продукт')
+    FIO = models.CharField(max_length=255, verbose_name='ФИО')
+    Phone = models.CharField(max_length=255, verbose_name='Телефон')
+    Address = models.CharField(max_length=255, verbose_name='Адрес')
+    Colvo = models.CharField(max_length=255, verbose_name='Количество')
+    status = models.BooleanField(default=False, verbose_name='Статус')
+
+
+    class Meta:
+        verbose_name = 'Заказы Физ. Лиц'  # Название модели в единственном числе
+        verbose_name_plural = 'Заказы Физ. Лиц'  # Название модели во множественном числе
+
+    def __str__(self):
+        return self.product + " " + self.FIO
+
+class ProductOrderUr(models.Model):
+    product = models.CharField(max_length=255, verbose_name='Продукт')
+    UrFace = models.CharField(max_length=255, verbose_name='Юр. Лицо')
+    FioRuk = models.CharField(max_length=255, verbose_name='ФИО Руководителя')
+    Phone = models.CharField(max_length=255, verbose_name='Телефон')
+    UrAddress = models.CharField(max_length=255, verbose_name='Юр. Адрес')
+    Colvo = models.CharField(max_length=255, verbose_name='Количество')
+    status = models.BooleanField(default=False, verbose_name='Статус')
+
+
+    class Meta:
+        verbose_name = 'Заказы Юр. Лиц'  # Название модели в единственном числе
+        verbose_name_plural = 'Заказы Юр. Лиц'  # Название модели во множественном числе
+
+
+    def __str__(self):
+        return self.product + " " + self.UrFace
+
+
+class AnimalsCard(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    image = models.ImageField(upload_to='main/static/main/subimg', verbose_name='Картинка')
+    desc = models.TextField()
+    price = models.DecimalField(max_digits=3, decimal_places=2)
+    ed = models.CharField(max_length=5, verbose_name='Единица Измерения')
+
+    class Meta:
+        verbose_name = 'Продукция Животновдство'  # Название модели в единственном числе
+        verbose_name_plural = 'Продукция Животновдство'  # Название модели во множественном числе
+
+
+    def __str__(self):
+        return self.title

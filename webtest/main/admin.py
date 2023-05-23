@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Image, TextIndex, SubImage, CustomUser, productCards, appealFIZ, appealUR, ChillSI, AnimalsSI, PlantsSI, TradeSI
-from .models import AnimalsText,PlantsText,ChillText,TradeText, News, ImageN
+from .models import AnimalsText, AnimalsCard,PlantsText,ChillText,TradeText, News, ImageN, PlantsCard, ProductOrderUr, ProductOrderFiz
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -26,6 +26,14 @@ class CustomUserAdmin(UserAdmin):
 
 
 
+class ProductOrderUrAdmin(admin.ModelAdmin):
+    list_display = ('product', 'UrFace', 'FioRuk', 'Phone', 'UrAddress', 'Colvo', 'status')
+    list_filter = ('status',)
+
+
+class ProductOrderFizAdmin(admin.ModelAdmin):
+    list_display = ('product', 'FIO', 'Phone', 'Address', 'Colvo', 'status')
+    list_filter = ('status',)
 
 
 
@@ -35,6 +43,8 @@ admin.site.register(TradeText)
 admin.site.register(ChillText)
 admin.site.register(AnimalsText)
 admin.site.register(News)
+admin.site.register(PlantsCard)
+admin.site.register(AnimalsCard)
 admin.site.register(ImageN)
 admin.site.register(PlantsSI)
 admin.site.register(TradeSI)
@@ -44,6 +54,8 @@ admin.site.register(TextIndex)
 admin.site.register(SubImage)
 admin.site.register(appealFIZ)
 admin.site.register(appealUR)
+admin.site.register(ProductOrderUr, ProductOrderUrAdmin)
+admin.site.register(ProductOrderFiz, ProductOrderFizAdmin)
 admin.site.register(productCards)
 admin.site.register(CustomUser, CustomUserAdmin)
 
