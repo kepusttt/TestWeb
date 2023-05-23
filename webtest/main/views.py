@@ -242,7 +242,14 @@ def animal_card(request, card_id):
     return render(request, 'main/card_detail.html', {'card': card})
 
 
+def shop(request):
+    animals_cards = AnimalsCard.objects.all()
+    plants_cards = PlantsCard.objects.all()
 
+    context = {
+        'animals_cards': animals_cards,
+        'plants_cards': plants_cards,
+    }
 
-
+    return render(request, 'main/shop.html', context)
 

@@ -1326,3 +1326,222 @@ label {
     height: 39px;
     border-radius: 15px;
 }
+
+.shopcart
+{
+    width: 89%;
+    border-radius: 10px;
+    min-height: 80px;
+    padding: 10px;
+    margin-bottom: -3%;
+
+}
+
+.shop{
+    border-radius: 10px;
+    height: 100%;
+    width: 8%;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.shop svg{
+    min-width: 90%;
+    min-height: 90%;
+}
+
+
+.shopieldFiz2{
+    padding: 20px;
+    /*min-width: 22%;*/
+    /*min-height: 60%;*/
+    /*max-width: 60%;*/
+    /*margin-top: 10%;*/
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.shopieldFiz2 input{
+    border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 15px;
+    color: white;
+    background-color: #2c2c2c;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.shopieldFiz2 p
+{
+    color: white;
+    margin: 0;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.shopieldFiz2 input:focus
+{
+    outline: 0;
+
+}
+
+.shopieldFiz2 textarea:focus{
+    outline: 0;
+}
+
+.shopieldFiz2 textarea{
+    background-color: #2c2c2c;
+    color: white;
+    padding-top: 15px;
+   border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 300px;
+    font-size: 15px;
+    padding-left: 15px;
+    resize: none;
+     font-family: 'Exo 2', sans-serif;
+}
+.shopieldFiz2 button{
+    margin-top: 1%;
+    flex-direction: row;
+    width: 30%;
+
+}
+
+.shopieldYur2{
+
+    padding: 20px;
+    /*max-width: 60%;*/
+    /*min-height: 40%;*/
+    /*margin-top: 2%;*/
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.shopieldYur2 input{
+    border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 15px;
+    color: white;
+    background-color: #2c2c2c;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.shopieldYur2 p
+{
+    color: white;
+    margin: 0;
+     font-family: 'Exo 2', sans-serif;
+
+}
+
+.shopieldYur2 input:focus
+{
+    outline: 0;
+
+}
+
+.shopieldYur2 textarea:focus{
+    outline: 0;
+}
+
+.shopieldYur2 textarea{
+    background-color: #2c2c2c;
+    color: white;
+    padding-top: 15px;
+   border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 250px;
+    font-size: 15px;
+    padding-left: 15px;
+    resize: none;
+     font-family: 'Exo 2', sans-serif;
+}
+.shopieldYur2 button{
+    margin-top: 1%;
+    flex-direction: row;
+    width: 30%;
+}
+
+.shopblock{
+    position: absolute;
+    /*border: 1px black dashed;*/
+    display: flex;
+    flex-direction: column;
+    min-height: 20%;
+    margin-top: 7%;
+    margin-left: 40%;
+    min-width: 35%;
+}
+
+.shopieldFiz2 select{
+    border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 30px;
+    font-size: 15px;
+    padding-right: 30px;
+    padding-left: 15px;
+    color: white;
+    background-color: #2c2c2c;
+     font-family: 'Exo 2', sans-serif;
+     -webkit-appearance: none; /* Убираем стандартную стрелку */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E"); /* Добавляем пользовательскую стрелку */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Смещаем стрелку влево на 15 пикселей */
+    background-size: 12px; /* Задаем размер стрелки */
+
+}
+
+.shopieldYur2 select{
+    border-radius: 15px;
+    border: 0;
+    width: 75%;
+    height: 30px;
+
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 30px;
+    color: white;
+    background-color: #2c2c2c;
+     font-family: 'Exo 2', sans-serif;
+    -webkit-appearance: none; /* Убираем стандартную стрелку */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E"); /* Добавляем пользовательскую стрелку */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Смещаем стрелку влево на 15 пикселей */
+    background-size: 12px; /* Задаем размер стрелки */
+    color: white;
+}
+
+
+.shopieldFiz2 select option{
+    border-radius: 15px;
+}
+
+.rounded-dropdown .select2-container--classic .select2-dropdown {
+  border-radius: 15px;
+}

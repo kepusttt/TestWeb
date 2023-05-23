@@ -2,34 +2,42 @@
 {% load static %}
 {% block content %}
 
-<div class="mainblock">
 
-    <div class="textblock">
-        <p class="Titleblock"><b>{{ card.title }}:</b></p>
-
-
-        <p>{{ card.desc }}</p>
-        <p> <b>Цена за {{ card.ed }}: {{ card.price }} BYN</b> </p>
-
-        <div class="contactfieldFiz2">
+{% csrf_token %}
+<div class="shopblock">
+<div class="shopieldFiz2">
                     <p>Продукт:</p>
-                    <input type="text" id="productfiz" value="{{ card.title }}" readonly>
+                    <select id="productfiz" class="select2">
+                      {% for animal_card in animals_cards %}
+                      <option value="{{ animal_card.title }}">{{ animal_card.title }}</option>
+                      {% endfor %}
+                      {% for plant_card in plants_cards %}
+                      <option value="{{ plant_card.title }}">{{ plant_card.title }}</option>
+                      {% endfor %}
+                    </select>
                     <p>ФИО</p>
                     <input type="text" id="fiofiz" placeholder="ФИО">
                     <p>Телефон</p>
                     <input type="text" id="phonefiz" placeholder="Телефон">
                     <p>Адрес</p>
                     <input type="text" id="addressfiz" placeholder="Адрес">
-                    <p>Количество ({{ card.ed }}):</p>
+                    <p>Количество:</p>
                     <input type="text" id="colvo" placeholder="Количество">
 
                     <button type="submit" id="fizbut2" class="btn btn-outline-success">Заказать</button>
                     <button type="submit" id="urface" class="btn btn-outline-primary">Для Юр. Лиц</button>
         </div>
 
-        <div class="contactfieldYur2">
+        <div class="shopieldYur2">
             <p>Продукт:</p>
-            <input type="text" id="productur" value="{{ card.title }}" readonly >
+            <select id="productfur" class="select2" readonly>
+              {% for animal_card in animals_cards %}
+              <option value="{{ animal_card.title }}">{{ animal_card.title }}</option>
+              {% endfor %}
+              {% for plant_card in plants_cards %}
+              <option value="{{ plant_card.title }}">{{ plant_card.title }}</option>
+              {% endfor %}
+            </select>
             <p>Юридическое лицо</p>
             <input type="text" id="urfacei" placeholder="Юр. Лицо">
             <p>ФИО Руководителя</p>
@@ -38,76 +46,29 @@
             <input type="text" id="phoneuri" placeholder="Телефон">
              <p>Юридический адрес</p>
             <input type="text" id="addressuri" placeholder="Юр. Адрес">
-            <p>Количество(кг):</p>
+            <p>Количество:</p>
             <input type="text" id="colvouri" placeholder="Количество">
             <button type="submit" id="senurb" class="btn btn-outline-success">Заказать</button>
             <button type="submit" id="urface2" class="btn btn-outline-primary">Для Физ. Лиц</button>
         </div>
-
-
-
-
-    </div>
-
-    <div class="contectblock">
-
-    <div class="simg">
-
-                <img class="minimized2" src="{{ card.image.url }}" alt="{{ card.title }}">
-    </div>
-
-    </div>
-
 </div>
 
 {% endblock %}
+
 {% block title  %}
-{{ card.title }}
+Заказ
 {% endblock %}
 
 {% block script %}
 <script>
-    $(function(){
-  $('.minimized,.timage,.timageleft,.minimized2').click(function(event) {
-    var i_path = $(this).attr('src');
-    var i_placeholder = $(this).attr('alt'); // Получение текста из placeholder картинки
-    $('body').append('<div id="overlay"></div><div id="magnify"><img src="'+i_path+'"></div>');
-    $('#magnify').css({
-      left: ($(document).width() - $('#magnify').outerWidth())/2,
-      top: ($(window).height() - $('#magnify').outerHeight())/2
-    });
-    $('#overlay, #magnify').fadeIn('fast');
-
-    // Добавление div с текстом
-    var textDiv = '<div id="textDiv">' + i_placeholder + '</div>'; // Использование текста из placeholder картинки
-    $('body').append(textDiv);
-    var textDivWidth = $('#textDiv').outerWidth();
-    var textDivHeight = $('#textDiv').outerHeight();
-    $('#textDiv').css({
-      left: ($(document).width() - textDivWidth)/2,
-      top: 0,
-      color: 'white'
-    });
-  });
-
-  $('body').on('click', '#overlay', function(event) {
-    event.preventDefault();
-    $('#overlay, #magnify').fadeOut('fast', function() {
-      $('#close-popup, #magnify, #overlay, #textDiv').remove();
-    });
-  });
-});
-</script>
-
-<script>
  document.getElementById("urface").addEventListener("click", function() {
-    document.querySelector(".contactfieldYur2").style.display = "flex";
-    document.querySelector(".contactfieldFiz2").style.display = "none";
+    document.querySelector(".shopieldYur2").style.display = "flex";
+    document.querySelector(".shopieldFiz2").style.display = "none";
 });
 
 document.getElementById("urface2").addEventListener("click", function() {
-    document.querySelector(".contactfieldYur2").style.display = "none";
-    document.querySelector(".contactfieldFiz2").style.display = "flex";
+    document.querySelector(".shopieldYur2").style.display = "none";
+    document.querySelector(".shopieldFiz2").style.display = "flex";
 });
 
 </script>
@@ -188,4 +149,75 @@ $(document).ready(function() {
 });
 </script>
 
+
+<script>
+document.getElementById("senurb").addEventListener("click", function() {
+    var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var UrFace = document.getElementById("urfacei").value;
+    var Fio = document.getElementById("fioruki").value;
+    var Phone = document.getElementById("phoneuri").value;
+    var address = document.getElementById("addressuri").value;
+    var appeal = document.getElementById("appealURi").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "{% url 'contacts' %}", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("X-CSRFToken", csrfToken);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Обработка успешного ответа от сервера
+            console.log(xhr.responseText);
+        }
+    };
+
+    var data = JSON.stringify({
+        "UrFace": UrFace,
+        "Fio": Fio,
+        "Phone": Phone,
+        "address": address,
+        "appeal": appeal
+    });
+    xhr.send(data);
+});
+
+</script>
+<script>
+
+document.getElementById("fizbut").addEventListener("click", function() {
+    var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var Fio = document.getElementById("fiofiz").value;
+    var Phone = document.getElementById("phonefiz").value;
+    var address = document.getElementById("addressfiz").value;
+    var appeal = document.getElementById("appealfiz").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "{% url 'contacts' %}", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("X-CSRFToken", csrfToken);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Обработка успешного ответа от сервера
+            console.log(xhr.responseText);
+        }
+    };
+
+    var data = JSON.stringify({
+        "Fio": Fio,
+        "Phone": Phone,
+        "address": address,
+        "appeal": appeal
+    });
+    xhr.send(data);
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.select2').select2({
+      theme: 'classic',
+      dropdownCssClass: 'rounded-dropdown' // Добавьте класс для закругленных уголков
+    });
+  });
+</script>
 {% endblock %}
