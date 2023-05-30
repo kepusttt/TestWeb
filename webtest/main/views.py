@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from main.models import Image, TextIndex, SubImage, CustomUser, productCards, appealFIZ, appealUR, AnimalsSI, TradeSI, PlantsSI, ChillSI, News
 from main.forms import CustomUserCreationForm
-from main.models import AnimalsText, ChillText, PlantsText, TradeText, PlantsCard, ProductOrderUr, ProductOrderFiz, AnimalsCard
+from main.models import AnimalsText,File ,ChillText, PlantsText, TradeText, PlantsCard, ProductOrderUr, ProductOrderFiz, AnimalsCard
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
@@ -26,8 +26,10 @@ def index(request):
 
 
 def product(request):
+    files = File.objects.first()
     products = productCards.objects.all()  # Получаем первый объект ProductCards (может быть изменено в соответствии с вашей логикой)
     context = {
+        'file': files,
         'products': products
     }
     return render(request, 'main/product.html', context)

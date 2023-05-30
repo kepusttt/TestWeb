@@ -17,7 +17,7 @@
                 {% if search_query %}
                     <button type="button" id="cancel" onclick="window.location.href='{% url 'news_view' %}'" class="btn btn-outline-warning">Отменить</button>
                 {% endif %}
-                 <button type="submit" name="sort_order"  id="sortb" class="btn btn-outline-secondary"  value="{% if sort_order == '-id' %}id{% else %}-id{% endif %}">
+                <button type="submit" name="sort_order"  id="sortb" class="btn btn-outline-secondary"  value="{% if sort_order == '-id' %}id{% else %}-id{% endif %}">
             {% if sort_order == '-id' %}
                 Сначала старое
             {% else %}

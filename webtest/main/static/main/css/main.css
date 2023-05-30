@@ -1329,12 +1329,35 @@ label {
 
 .shopcart
 {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 2%;
     width: 89%;
     border-radius: 10px;
     min-height: 80px;
     padding: 10px;
     margin-bottom: -3%;
 
+}
+
+.dw svg{
+    color: white;
+    height: 25px;
+    width: 25px;
+
+}
+.dw{
+    border-radius: 10px;
+    height: 100%;
+    width: 8%;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    padding: 15px;
+
+}
+.dw button{
+    background-color: #1a1a1a;
+    border: none;
 }
 
 .shop{
