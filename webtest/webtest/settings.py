@@ -25,9 +25,11 @@ SECRET_KEY = 'django-insecure-*iu(91kj$8jcu5^27uhg_&b$x=$u87m6hz#+mcf2@p480_e%p=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'main',
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'webtest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

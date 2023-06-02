@@ -255,3 +255,7 @@ def shop(request):
 
     return render(request, 'main/shop.html', context)
 
+
+def page_not_found_view(request, exception):
+    return render('404.html', status=404)
+
