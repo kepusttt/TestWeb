@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from main.models import Image, TextIndex, SubImage, CustomUser, productCards, appealFIZ, appealUR, AnimalsSI, TradeSI, PlantsSI, ChillSI, News
-from main.forms import CustomUserCreationForm
+from main.forms import CustomUserCreationForm, ProfileForm
 from main.models import AnimalsText,File ,ChillText, PlantsText, TradeText, PlantsCard, ProductOrderUr, ProductOrderFiz, AnimalsCard
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -259,3 +259,57 @@ def shop(request):
 def page_not_found_view(request, exception):
     return render('404.html', status=404)
 
+
+# reg
+
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from .forms import SignUpForm
+from .models import Profile
+from django_email_verification import send_email
+
+
+def registration(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            Profile.objects.create(user=user, phone_number=form.cleaned_data.get('phone_number'))
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            # высылаем письмо и делаем его неактивным
+            user.is_active = True
+            send_email(user)
+            return redirect('/')
+    else:
+        form = SignUpForm()
+    return render(request, 'main/signup.html', {'form': form})
+
+def profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        try:
+            profile = request.user.profile
+            form = ProfileForm(instance=profile)
+        except Profile.DoesNotExist:
+            profile = Profile(user=request.user)
+            profile.save()
+            form = ProfileForm(instance=profile)
+    context = {'form': form}
+    return render(request, 'main/prof.html', context)
+
+
+
+def update_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        print(form.errors)  # Debug print statement
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True, 'first_name': request.user.first_name, 'last_name': request.user.last_name})
+    return JsonResponse({'success': False})

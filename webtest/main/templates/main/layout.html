@@ -32,9 +32,20 @@
             <a href="{% url 'contacts' %}">
                 <li><i class="bi bi-person-lines-fill"></i> <b>Контакты</b>  </li>
             </a>
-<!--             <a href="{% url 'login' %}">-->
-<!--                <li><i class="bi bi-box-arrow-in-right"></i> <b>Войти</b>  </li>-->
-<!--            </a>-->
+
+         {% if user.is_authenticated %}
+    <a href="{% url 'profile' %}">
+        <li><i class="bi bi-person-circle"></i> <b>Профиль</b></li>
+    </a>
+    <a href="{% url 'logout' %}">
+        <li><i class="bi bi-box-arrow-left"></i> <b>Выйти</b></li>
+    </a>
+{% else %}
+    <a href="{% url 'login' %}">
+        <li><i class="bi bi-box-arrow-right"></i> <b>Войти</b></li>
+    </a>
+{% endif %}
+
 
 
 

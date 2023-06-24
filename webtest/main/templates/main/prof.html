@@ -1,0 +1,75 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="profmain">
+
+        <div class="profinfo">
+            <div class="propic">
+                {% if user.profile.pic %}
+                <img src="{{ user.profile.pic.url }}" alt="">
+                {% else %}
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIGRRjenklOCfhEiSONGgeDAmpOp3Aipiww&usqp=CAU" alt="">
+                {% endif %}
+            </div>
+            <div class="proftext">
+
+                <div class="name">
+                    {% if user.first_name and user.last_name %}
+    <p><b>{{ user.first_name }} {{ user.last_name }}{% if user.is_superuser %} <i class="bi bi-patch-check-fill" title="Администратор"></i> {% endif %}</b></p>
+{% else %}
+    <p><b>{{ user.username }}{% if user.is_superuser %} <i class="bi bi-patch-check-fill"></i> {% endif %}</b></p>
+{% endif %}
+
+                     {% if user.profile.phone_number and user.profile.phone_number %}
+                        <p>Телефон: <b>{{ user.profile.phone_number }}</b></p>
+                    {% else %}
+                        <p>Телефон: <b>Не Указан</b></p>
+                    {% endif %}
+                    {% if user.email and user.email %}
+                        <p>Email: <b>{{ user.email }}</b></p>
+                    {% else %}
+                        <p>Email: <b>Не Указан</b></p>
+                    {% endif %}
+                </div>
+                <div class="editb">
+                    <form id="upload-form" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.pic }}
+
+                </form>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('#upload-form');
+  const input = document.querySelector('#id_pic');
+  const preview = document.querySelector('.propic img');
+
+  input.addEventListener('change', function() {
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function() {
+      preview.src = reader.result;
+      form.submit(); // Отправка формы
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = "";
+    }
+  });
+});
+</script>
+{% endblock %}

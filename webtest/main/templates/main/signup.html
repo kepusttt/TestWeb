@@ -1,0 +1,51 @@
+
+ {% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+      <div class="loginnewblock1">
+          <div class="loginnew1">
+              <h3>Регистрация</h3>
+
+              <div class="usern">
+              <p>Логин</p>
+          {{ form.username }}
+              </div>
+              <div class="pass1">
+
+                  <p>Пароль</p>
+          {{ form.password1 }}
+
+
+              </div>
+              <div class="pass2">
+
+                  <p>Повторите пароль</p>
+          {{ form.password2 }}
+
+
+              </div>
+                <div class="email">
+
+                                  <p>Эл.Почта</p>
+                          {{ form.email }}
+
+                </div>
+                <div class="phone">
+
+                                  <p>Номер телефона</p>
+                          {{ form.phone_number }}
+
+                </div>
+
+               <button type="submit">Регистрация</button>
+              <a href="{% url 'login' %}">Есть аккаунт? Войти</a>
+        </form>
+          </div>
+          </div>
+
+
+
+
+{% endblock %}

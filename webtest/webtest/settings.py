@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jquery',
+    'django_email_verification',
 
 ]
 
@@ -146,3 +147,36 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'kobelevruslan9@gmail.com'
 EMAIL_HOST_PASSWORD = 'smmh pocb uakv must'
+
+
+
+def verified_callback(user):
+    user.is_active = True
+
+EMAIL_VERIFIED_CALLBACK = verified_callback
+
+# тема письма
+EMAIL_MAIL_SUBJECT = 'Confirm your email'
+# шаблон письма в html
+EMAIL_MAIL_HTML = 'mail_body.html'
+# текстовый шаблон
+EMAIL_MAIL_PLAIN = 'mail_body.txt'
+# время жизни ссылки
+EMAIL_MAIL_TOKEN_LIFE = 60 * 60
+# шаблон, который увидят после перехода по ссылке
+EMAIL_MAIL_PAGE_TEMPLATE = 'confirm_template.html'
+# домен для использования в ссылке
+EMAIL_PAGE_DOMAIN = 'http://mydomain.com/'
+EMAIL_MULTI_USER = True
+
+# настройки вашего SMTP сервера
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kobelevruslan9@gmail.com'
+EMAIL_FROM_ADDRESS = 'kobelevruslan9@gmail.com'
+EMAIL_HOST_PASSWORD = 'coffee33456496'
+EMAIL_USE_TLS = True
+
+# используется для тестирования
+# выводит письма в консоли
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

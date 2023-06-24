@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
+from .models import CustomUser, User
 from django.core.validators import validate_email
 
 class CustomUserCreationForm(UserCreationForm):
@@ -69,6 +69,48 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ('email', 'first_name', 'last_name', 'password1', 'password2')
 
 
+# reg
+
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class SignUpForm(UserCreationForm):
+    phone_number = forms.CharField(
+        max_length=15,
+        help_text='Номер телефона. Формат +7910...', label='test'
+    )
+    password1 = forms.CharField(
+        label='Password',
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        help_text='Одна большая буква и т.д.',
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'phone_number', 'password1', 'password2', )
 
 
 
+from django import forms
+from .models import Profile
+from django.forms.widgets import FileInput
+
+
+class CustomFileInput(FileInput):
+    def render_file_input(self, name, value, attrs=None, renderer=None):
+        html = super().render_file_input(name, value, attrs, renderer)
+        html = html.replace('Файл не выбран', '')  # заменяем текст на пустую строку
+        return html
+
+class ProfileForm(forms.ModelForm):
+    pic = forms.ImageField(widget=forms.FileInput(attrs={'placeholder': ' '}), label_suffix='')
+
+    class Meta:
+        model = Profile
+        fields = ['pic']

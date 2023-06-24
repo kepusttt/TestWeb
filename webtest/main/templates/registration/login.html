@@ -1,0 +1,33 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+      <div class="loginnewblock">
+          <div class="loginnew">
+              <h3>Вход</h3>
+              <div class="usern">
+              <p>Логин</p>
+          {{ form.username }}
+              </div>
+              <div class="pass">
+
+                  <p>Пароль</p>
+          {{ form.password }}
+
+              </div>
+
+               <button type="submit">Войти</button>
+              <a href="{% url 'reg' %}">Зарегистрироваться</a>
+        </form>
+          </div>
+          </div>
+
+
+
+
+{% endblock %}
+
+{% block title  %}
+Вход
+{% endblock %}
