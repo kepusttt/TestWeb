@@ -360,7 +360,11 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=15)
+    phone_number = models.CharField(max_length=15,verbose_name='Номер телефона')
     pic = models.ImageField(upload_to='main/static/main/subimg')
-    birth_date = models.DateField(null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True, verbose_name='Дата рождения')
     liked_articles = models.ManyToManyField(News, blank=True)
+
+
+# useredit
+

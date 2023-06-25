@@ -327,3 +327,28 @@ def like_article(request):
         else:
             profile.liked_articles.add(article)
     return redirect('news_view')
+
+
+#editprof
+
+from django.shortcuts import render
+from .models import Profile
+from .forms import EditUserForm, EditProfileForm
+
+def edit_profile(request):
+    if request.method == 'POST':
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = EditProfileForm(request.POST, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')  # Replace 'profile' with the name of the URL for the user's profile page
+        else:
+            messages.error(request, 'Error updating your profile')
+    else:
+        user_form = EditUserForm(instance=request.user)
+        profile_form = EditProfileForm(instance=request.user.profile)
+
+    context = {'user_form': user_form, 'profile_form': profile_form}
+    return render(request, 'main/edit_profile.html', context)
