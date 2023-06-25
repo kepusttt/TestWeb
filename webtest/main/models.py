@@ -363,3 +363,4 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15)
     pic = models.ImageField(upload_to='main/static/main/subimg')
     birth_date = models.DateField(null=True, blank=True)
+    liked_articles = models.ManyToManyField(News, blank=True)

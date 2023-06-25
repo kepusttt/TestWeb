@@ -296,11 +296,13 @@ def profile(request):
         try:
             profile = request.user.profile
             form = ProfileForm(instance=profile)
+            liked_articles = profile.liked_articles.all()
         except Profile.DoesNotExist:
             profile = Profile(user=request.user)
             profile.save()
             form = ProfileForm(instance=profile)
-    context = {'form': form}
+            liked_articles = []
+    context = {'form': form, 'liked_articles': liked_articles}
     return render(request, 'main/prof.html', context)
 
 
@@ -313,3 +315,15 @@ def update_profile(request):
             form.save()
             return JsonResponse({'success': True, 'first_name': request.user.first_name, 'last_name': request.user.last_name})
     return JsonResponse({'success': False})
+
+
+def like_article(request):
+    if request.method == 'POST':
+        article_id = request.POST.get('article_id')
+        article = News.objects.get(id=article_id)
+        profile = request.user.profile
+        if article in profile.liked_articles.all():
+            profile.liked_articles.remove(article)
+        else:
+            profile.liked_articles.add(article)
+    return redirect('news_view')

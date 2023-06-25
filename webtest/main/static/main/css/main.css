@@ -1754,9 +1754,7 @@ label {
 .propic img {
   height: 100%;
   width: auto;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -khtml-border-radius: 50%;
+
   border-radius: 50%;
 }
 .proftext{
@@ -1772,13 +1770,13 @@ label {
     /*border: 2px green dashed;*/
     height: 100%;
     width: 95%;
+
     color: white;
     font-family: 'Exo 2', sans-serif;
 }
-.editb{
-
+.name p{
+    margin-bottom: 0px;
 }
-
 #id_pic {
   color: transparent;
     width: 44px ;
@@ -1812,4 +1810,34 @@ label {
 }
 #id_pic:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+#star:hover{
+    fill:Yellow;
+}
+
+.liked-articles
+{
+    /*border: 2px red dashed;*/
+    padding: 0%;
+    width: 110%;
+    margin-left: -5%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 2%;
+
+
+}
+
+.texti{
+    color:white
+}
+
+.like-btn{
+    background-color: transparent;
+    color: white;
+    outline: none;
+    border: none;
+
 }

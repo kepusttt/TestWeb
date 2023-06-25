@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Image, TextIndex, SubImage, CustomUser, productCards, appealFIZ, appealUR, ChillSI, AnimalsSI, PlantsSI, TradeSI
-from .models import AnimalsText, AnimalsCard,File,PlantsText,ChillText,TradeText, News, ImageN, PlantsCard, ProductOrderUr, ProductOrderFiz
+from .models import AnimalsText, Profile, AnimalsCard,File,PlantsText,ChillText,TradeText, News, ImageN, PlantsCard, ProductOrderUr, ProductOrderFiz
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -46,6 +46,7 @@ admin.site.register(News)
 admin.site.register(PlantsCard)
 admin.site.register(AnimalsCard)
 admin.site.register(ImageN)
+admin.site.register(Profile)
 admin.site.register(PlantsSI)
 admin.site.register(TradeSI)
 admin.site.register(AnimalsSI)
