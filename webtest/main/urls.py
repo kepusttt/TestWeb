@@ -7,6 +7,8 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('jet/', include('jet.urls', 'jet')),
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('card/<int:card_id>/', views.card_detail, name='card_detail'),
     path('news/', news_view, name='news_view'),
     path('animals/<int:card_id>/', views.animal_card, name='animal_card'),

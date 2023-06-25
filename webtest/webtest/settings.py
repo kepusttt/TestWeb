@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'main',
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -180,3 +182,36 @@ EMAIL_USE_TLS = True
 # используется для тестирования
 # выводит письма в консоли
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+JET_THEMES = [
+    {
+        'theme': 'default', # название папки с темой
+        'color': '#47bac1', # цвет кнопки выбора темы в пользовательском меню
+        'title': 'Default' # название темы
+    },
+    {
+        'theme': 'green',
+        'color': '#44b78b',
+        'title': 'Green'
+    },
+    {
+        'theme': 'light-green',
+        'color': '#2faa60',
+        'title': 'Light Green'
+    },
+    {
+        'theme': 'light-violet',
+        'color': '#a464c4',
+        'title': 'Light Violet'
+    },
+    {
+        'theme': 'light-blue',
+        'color': '#5EADDE',
+        'title': 'Light Blue'
+    },
+    {
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light Gray'
+    }
+]
